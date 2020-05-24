@@ -1,0 +1,7 @@
+th {
+  margin-left: 2px;
+}
+td+td {
+  text-align: right;
+  margin-left: 2px;
+}

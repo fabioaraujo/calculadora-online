@@ -9,12 +9,7 @@ import { Historico } from './../../classes/historico';
 })
 export class JurosCompostosComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts;
-  chartOptions: Highcharts.Options = {
-    series: [{
-      data: [1, 2, 3],
-      type: 'line',
-    }]
-  };
+  chartOptions: Highcharts.Options;
 
   @Input() data = [];
 
@@ -82,9 +77,50 @@ export class JurosCompostosComponent implements OnInit {
     this.somaAplicacoes = ultimoRegistro.aportes;
     this.somaJuros = ultimoRegistro.jurosAcumulados;
 
+    this.atualizaGrafico(this.matrix);
     console.log(this.matrix);
   }
 
+  atualizaGrafico(matrix: Historico[]){
+    let aportes: number[] = new Array();
+    let juros: number[] = new Array();
+    let montante: number[] = new Array();
 
+    for (const i in matrix) {
+      const item = matrix[i];
+      aportes.push(this.decimal2(item.aportes));
+      juros.push(this.decimal2(item.jurosAcumulados));
+      montante.push(this.decimal2(item.montante));
+    }
+
+    this.chartOptions = {
+      title: {
+        text: 'Juros Compostos',
+      },
+      yAxis: {
+        title: {
+            text: 'Reais',
+        },
+      },
+      xAxis: {
+        title: {
+            text: 'Meses',
+        }
+      },
+      series: [{
+        data: montante,
+        name: 'Acumulado',
+        type: 'line',
+      }, {
+        data: aportes,
+        name: 'Aportes',
+        type: 'line',
+      }, {
+        data: juros,
+        name: 'Juros',
+        type: 'line',
+      } ],
+    };
+  }
 
 }

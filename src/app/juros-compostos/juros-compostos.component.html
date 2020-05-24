@@ -1,57 +1,83 @@
-<div class="config">
-  <div class="item-config">
-     <label for="">Valor inicial:</label>
-     <div class="valor"> <span>R$:</span> <input type="number" class="input-valor" name="capInicial" mask="valor" [(ngModel)]="inicial" (keyup)="calculaJurosCompostos()"></div>
+<div class="container">
+<div class="row">
+  <div class="configuracao col-md-6">
+    <div class="item-config">
+      <label for="">Valor inicial:</label>
+      <div class="valor"> <span>R$:</span> <input type="number" [(ngModel)]="inicial" (keyup)="calculaJurosCompostos()"></div>
+    </div>
+    <div class="item-config">
+      <label for="">Aporte/Retirada mensal:</label>
+      <div class="valor"> <span>R$:</span> <input type="number" [(ngModel)]="aporteMensal" (keyup)="calculaJurosCompostos()"></div>
+    </div>
+    <div class="item-double multiples-itens taxadiv">
+      <div class="item">
+          <label for="taxaMes" class="label">Taxa</label>
+          <div class="input"> <span>Mensal</span> <input type="number" [(ngModel)]="jurosMensal" (keyup)="calculaJurosCompostos()"></div>
+      </div>
+      <div class="item">
+          <div class="input"> <span>Anual</span> <input type="number" [(ngModel)]="jurosAnual"  (keyup)="calculaJurosMensal()"></div>
+      </div>
+    </div>
+    <div class="item-double multiples-itens taxadiv">
+      <div class="item">
+          <label for="taxaMes" class="label">Prazo</label>
+          <div class="input"> <span>Meses</span> <input type="number" [(ngModel)]="quantidadeMeses" (keyup)="calculaAnos()"></div>
+      </div>
+      <div class="item">
+          <div class="input"> <span>Anos</span> <input type="number" [(ngModel)]="quantidadeAnos" (keyup)="calculaMeses()"></div>
+      </div>
+    </div>
+    <!--
+    <div class="item-double multiples-itens prazodiv">
+      <div class="item">
+          <div class="input"> <span>Ou Data específica</span> <input type="date" name="prazoData" value=""></div>
+      </div>
+    </div>
+    -->
   </div>
-  <div class="item-config">
-     <label for="">Aporte/Retirada mensal:</label>
-     <div class="valor"> <span>R$:</span> <input type="number" class="input-valor user-success" name="aporte" mask="valor" [(ngModel)]="aporteMensal" (keyup)="calculaJurosCompostos()"></div>
+  <div class="col-md-6">
+    <div>
+      Valor Total: {{ valorTotal | currency:'BRL':'symbol':'1.2-2':'pt' }}
+    </div>
+    <div>
+      Aplicação Inicial: {{ inicial | currency:'BRL':'symbol':'1.2-2':'pt' }}
+    </div>
+    <div>
+      Total aplicado: {{ somaAplicacoes | currency:'BRL':'symbol':'1.2-2':'pt' }}
+    </div>
+    <div>
+      Total juros: {{ somaJuros | currency:'BRL':'symbol':'1.2-2':'pt' }}
+    </div>
   </div>
-  <div class="item-double multiples-itens taxadiv">
-     <div class="item">
-        <label for="taxaMes" class="label">Taxa</label>
-        <div class="input"> <span>Mensal</span> <input type="number" name="taxaMes" style="box-shadow:none;" [(ngModel)]="jurosMensal" (keyup)="calculaJurosCompostos()"></div>
-     </div>
-     <div class="item">
-        <div class="input"> <span>Anual</span> <input type="number" name="taxaAno" [(ngModel)]="jurosAnual"  (keyup)="calculaJurosMensal()"></div>
-     </div>
-  </div>
-  <div class="item-double multiples-itens taxadiv">
-     <div class="item">
-        <label for="taxaMes" class="label">Prazo</label>
-        <div class="input"> <span>Meses</span> <input type="number" name="prazoMes" [(ngModel)]="quantidadeMeses" (keyup)="calculaAnos()"></div>
-     </div>
-     <div class="item">
-        <div class="input"> <span>Anos</span> <input type="number" name="prazoAno" [(ngModel)]="quantidadeAnos" (keyup)="calculaMeses()"></div>
-     </div>
-  </div>
-  <!--
-  <div class="item-double multiples-itens prazodiv">
-     <div class="item">
-        <div class="input"> <span>Ou Data específica</span> <input type="date" name="prazoData" value=""></div>
-     </div>
-  </div>
-  -->
 </div>
-<div>
-  Valor Total: {{ valorTotal | currency:'BRL':'symbol':'1.2-2':'pt' }}
-</div>
+<div class="row">
+  <highcharts-chart
+  [Highcharts]="Highcharts"
+  [options]="chartOptions"
 
-<div>
-  <table>
-    <tr>
-      <th>Linha</th>
-      <th>Aportes</th>
-      <th>Juros Mês</th>
-      <th>Juros Acumulados</th>
-      <th>Montante Acumulado</th>
-    </tr>
-    <tr *ngFor="let item of matrix" >
-      <td>{{ item.linha }}</td>
-      <td>{{ item.aportes | currency:'BRL':'symbol':'1.2-2':'pt' }}</td>
-      <td>{{ item.jurosMes | currency:'BRL':'symbol':'1.2-2':'pt' }}</td>
-      <td>{{ item.jurosAcumulados | currency:'BRL':'symbol':'1.2-2':'pt' }}</td>
-      <td>{{ item.montante | currency:'BRL':'symbol':'1.2-2':'pt' }}</td>
-    </tr>
+  style="width: 100%; height: 400px; display: block;"
+></highcharts-chart>
+</div>
+<div class="row">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Linha</th>
+        <th>Aportes</th>
+        <th>Juros Mês</th>
+        <th>Juros Acumulados</th>
+        <th>Montante Acumulado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of matrix" >
+        <td>{{ item.linha }}</td>
+        <td>{{ item.aportes | currency:'BRL':'symbol':'1.2-2':'pt' }}</td>
+        <td>{{ item.jurosMes | currency:'BRL':'symbol':'1.2-2':'pt' }}</td>
+        <td>{{ item.jurosAcumulados | currency:'BRL':'symbol':'1.2-2':'pt' }}</td>
+        <td>{{ item.montante | currency:'BRL':'symbol':'1.2-2':'pt' }}</td>
+      </tr>
+    </tbody>
   </table>
+</div>
 </div>

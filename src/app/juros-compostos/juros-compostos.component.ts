@@ -1,11 +1,23 @@
+import { Component, OnInit, Input } from '@angular/core';
+import * as Highcharts from 'highcharts';
+import HC_exporting from 'highcharts/modules/exporting';
 import { Historico } from './../../classes/historico';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   templateUrl: './juros-compostos.component.html',
   styleUrls: ['./juros-compostos.component.css']
 })
 export class JurosCompostosComponent implements OnInit {
+  Highcharts: typeof Highcharts = Highcharts;
+  chartOptions: Highcharts.Options = {
+    series: [{
+      data: [1, 2, 3],
+      type: 'line',
+    }]
+  };
+
+  @Input() data = [];
+
   inicial = 1000;
   aporteMensal = 100;
   jurosMensal = 0.6;
@@ -14,14 +26,20 @@ export class JurosCompostosComponent implements OnInit {
   quantidadeAnos = 1;
 
   valorTotal;
+  somaJuros;
+  somaAplicacoes;
   matrix: Historico[];
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit(): void {
     this.jurosAnual = this.decimal2((Math.pow(this.jurosMensal / 100 + 1, 12) - 1) * 100);
     this.calculaJurosCompostos();
-  }
+
+    HC_exporting(Highcharts);
+    }
+
 
   decimal2(valor){
     return parseFloat(parseFloat(valor).toFixed(2));
@@ -58,9 +76,15 @@ export class JurosCompostosComponent implements OnInit {
       jurosAcumulado = totalAcumulado - aporteTotal;
 
       this.matrix.push(new Historico(i, aporteTotal, juros, jurosAcumulado, totalAcumulado));
-      this.valorTotal = totalAcumulado;
     }
+    const ultimoRegistro = this.matrix[this.matrix.length - 1];
+    this.valorTotal = ultimoRegistro.montante;
+    this.somaAplicacoes = ultimoRegistro.aportes;
+    this.somaJuros = ultimoRegistro.jurosAcumulados;
+
     console.log(this.matrix);
   }
+
+
 
 }

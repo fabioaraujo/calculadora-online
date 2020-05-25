@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "deploy": "ng deploy --base-href https://fabioaraujo.github.io/calculadora-online/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -24,6 +25,7 @@
     "bootstrap": "^4.4.0",
     "highcharts": "^8.1.0",
     "highcharts-angular": "^2.4.0",
+    "ng2-adsense": "^8.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

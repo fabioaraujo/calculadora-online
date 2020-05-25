@@ -28,7 +28,7 @@
     <div>
       <div class="item">
           <label for="juros-mensal">Taxa Mensal</label>
-          <input type="number" class="form-control" id="juros-mensal" [(ngModel)]="jurosMensal" (keyup)="calculaJurosCompostos()">
+          <input type="number" class="form-control" id="juros-mensal" [(ngModel)]="jurosMensal" (keyup)="calculaJurosAnual()">
       </div>
       <div class="item">
           <label for="juros-mensal">Taxa Anual</label>
@@ -65,6 +65,10 @@
         <li class="list-group-item text-right"><b class="texto-float-left">Total juros:</b> {{ somaJuros | currency:'BRL':'symbol':'1.2-2':'pt' }}</li>
       </ul>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
   </div>
 </div>
 <div class="row">

@@ -16,9 +16,9 @@ export class JurosCompostosComponent implements OnInit {
   inicial = 1000;
   aporteMensal = 100;
   jurosMensal = 0.6;
-  quantidadeMeses = 12;
+  quantidadeMeses = 120;
   jurosAnual;
-  quantidadeAnos = 1;
+  quantidadeAnos = 10;
 
   valorTotal;
   somaJuros;
@@ -54,7 +54,7 @@ export class JurosCompostosComponent implements OnInit {
 
   calculaJurosAnual(){
     this.jurosAnual = this.decimal2((Math.pow(this.jurosMensal / 100 + 1, 12) - 1) * 100);
-    
+
     this.calculaJurosCompostos();
   }
 

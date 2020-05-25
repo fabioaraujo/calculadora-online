@@ -7,6 +7,6 @@ Criar calculadoras com visualização de gráficos.
 
 ## Como efetuar o deploy para o git hub pages
 
-- Execute o compando npm run-script deploy
+- Execute o comando npm run-script deploy
 OU
 - ng deploy --base-href https://fabioaraujo.github.io/calculadora-online/

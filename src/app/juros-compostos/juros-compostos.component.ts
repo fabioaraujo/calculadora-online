@@ -91,7 +91,7 @@ export class JurosCompostosComponent implements OnInit {
     }
     for (const i in matrix) {
       const item = matrix[i];
-      if(item.linha === 1 || item.linha % apresentar === 0){
+      if(item.linha === 0 || item.linha % apresentar === 0){
         aportes.push(this.decimal2(item.aportes));
         juros.push(this.decimal2(item.jurosAcumulados));
         montante.push(this.decimal2(item.montante));

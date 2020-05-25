@@ -10,6 +10,7 @@ import { MenuComponent } from './menu/menu.component';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 registerLocaleData(localePt, 'pt');
@@ -26,6 +27,7 @@ registerLocaleData(localePt, 'pt');
     AppRoutingModule,
     FormsModule,
     HighchartsChartModule,
+    NgbModule,
   ],
   providers: [],
 

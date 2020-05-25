@@ -2,29 +2,47 @@
 <div class="row">
   <div class="configuracao col-md-6">
     <div class="item-config">
-      <label for="">Valor inicial:</label>
-      <div class="valor"> <span>R$:</span> <input type="number" [(ngModel)]="inicial" (keyup)="calculaJurosCompostos()"></div>
+      <label for="valor-inicial">Valor inicial:</label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">R$</span>
+        </div>
+        <input type="number" class="form-control" id="valor-inicial" [(ngModel)]="inicial" aria-label="quantidade em Reais" (keyup)="calculaJurosCompostos()">
+        <div class="input-group-append">
+          <span class="input-group-text">,00</span>
+        </div>
+      </div>
     </div>
     <div class="item-config">
-      <label for="">Aporte/Retirada mensal:</label>
-      <div class="valor"> <span>R$:</span> <input type="number" [(ngModel)]="aporteMensal" (keyup)="calculaJurosCompostos()"></div>
+      <label for="aporte-mensal">Aporte/Retirada mensal:</label>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">R$</span>
+        </div>
+        <input type="number" class="form-control" id="aporte-mensal" [(ngModel)]="aporteMensal" aria-label="quantidade em Reais" (keyup)="calculaJurosCompostos()">
+        <div class="input-group-append">
+          <span class="input-group-text">,00</span>
+        </div>
+      </div>
     </div>
-    <div class="item-double multiples-itens taxadiv">
+    <div>
       <div class="item">
-          <label for="taxaMes" class="label">Taxa</label>
-          <div class="input"> <span>Mensal</span> <input type="number" [(ngModel)]="jurosMensal" (keyup)="calculaJurosCompostos()"></div>
+          <label for="juros-mensal">Taxa Mensal</label>
+          <input type="number" class="form-control" id="juros-mensal" [(ngModel)]="jurosMensal" (keyup)="calculaJurosCompostos()">
       </div>
       <div class="item">
-          <div class="input"> <span>Anual</span> <input type="number" [(ngModel)]="jurosAnual"  (keyup)="calculaJurosMensal()"></div>
+          <label for="juros-mensal">Taxa Anual</label>
+          <input type="number" class="form-control" id="juros-anual" [(ngModel)]="jurosAnual" (keyup)="calculaJurosMensal()">
       </div>
     </div>
-    <div class="item-double multiples-itens taxadiv">
+    <div>
       <div class="item">
-          <label for="taxaMes" class="label">Prazo</label>
-          <div class="input"> <span>Meses</span> <input type="number" [(ngModel)]="quantidadeMeses" (keyup)="calculaAnos()"></div>
+          <label for="prazo-meses">Prazo Meses</label>
+          <input type="number" class="form-control" id="prazo-meses" [(ngModel)]="quantidadeMeses" (keyup)="calculaAnos()">
       </div>
       <div class="item">
-          <div class="input"> <span>Anos</span> <input type="number" [(ngModel)]="quantidadeAnos" (keyup)="calculaMeses()"></div>
+          <label for="prazo-anos">Prazo Anos</label>
+          <input type="number" class="form-control" id="prazo-anos" [(ngModel)]="quantidadeAnos" (keyup)="calculaMeses()">
       </div>
     </div>
     <!--
@@ -36,17 +54,16 @@
     -->
   </div>
   <div class="col-md-6">
-    <div>
-      Valor Total: {{ valorTotal | currency:'BRL':'symbol':'1.2-2':'pt' }}
-    </div>
-    <div>
-      Aplicação Inicial: {{ inicial | currency:'BRL':'symbol':'1.2-2':'pt' }}
-    </div>
-    <div>
-      Total aplicado: {{ somaAplicacoes | currency:'BRL':'symbol':'1.2-2':'pt' }}
-    </div>
-    <div>
-      Total juros: {{ somaJuros | currency:'BRL':'symbol':'1.2-2':'pt' }}
+    <div class="card" style="width: 18rem;">
+      <div class="card-header">
+        Resultado Final
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item text-right"><b class="texto-float-left">Valor Total:</b> {{ valorTotal | currency:'BRL':'symbol':'1.2-2':'pt' }}</li>
+        <li class="list-group-item text-right"><b class="texto-float-left">Aplicação Inicial:</b> {{ inicial | currency:'BRL':'symbol':'1.2-2':'pt' }}</li>
+        <li class="list-group-item text-right"><b class="texto-float-left">Total aplicado:</b> {{ somaAplicacoes | currency:'BRL':'symbol':'1.2-2':'pt' }}</li>
+        <li class="list-group-item text-right"><b class="texto-float-left">Total juros:</b> {{ somaJuros | currency:'BRL':'symbol':'1.2-2':'pt' }}</li>
+      </ul>
     </div>
   </div>
 </div>

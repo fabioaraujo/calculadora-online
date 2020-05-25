@@ -85,13 +85,20 @@ export class JurosCompostosComponent implements OnInit {
     let aportes: number[] = new Array();
     let juros: number[] = new Array();
     let montante: number[] = new Array();
-
+    let apresentar = 1;
+    if(matrix.length > 121){
+      apresentar = 12;
+    }
     for (const i in matrix) {
       const item = matrix[i];
-      aportes.push(this.decimal2(item.aportes));
-      juros.push(this.decimal2(item.jurosAcumulados));
-      montante.push(this.decimal2(item.montante));
+      if(item.linha === 1 || item.linha % apresentar === 0){
+        aportes.push(this.decimal2(item.aportes));
+        juros.push(this.decimal2(item.jurosAcumulados));
+        montante.push(this.decimal2(item.montante));
+      }
     }
+
+    const xAxisTitle = apresentar === 1 ? 'Meses' : 'Anos';
 
     this.chartOptions = {
       title: {
@@ -104,7 +111,7 @@ export class JurosCompostosComponent implements OnInit {
       },
       xAxis: {
         title: {
-            text: 'Meses',
+            text: xAxisTitle,
         }
       },
       series: [{

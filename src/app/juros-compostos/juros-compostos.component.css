@@ -5,3 +5,7 @@ td+td {
   text-align: right;
   margin-left: 2px;
 }
+
+.texto-float-left {
+   float: left;
+ }

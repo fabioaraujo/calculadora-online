@@ -7,7 +7,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">R$</span>
         </div>
-        <input type="number" class="form-control" id="valor-inicial" [(ngModel)]="inicial" aria-label="quantidade em Reais" (keyup)="calculaJurosCompostos()">
+        <input type="number" class="form-control" id="valor-inicial" [(ngModel)]="inicial" aria-label="quantidade em Reais" (keyup)="calculaJurosCompostos()" (click)="calculaJurosCompostos()">
         <div class="input-group-append">
           <span class="input-group-text">,00</span>
         </div>
@@ -19,7 +19,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">R$</span>
         </div>
-        <input type="number" class="form-control" id="aporte-mensal" [(ngModel)]="aporteMensal" aria-label="quantidade em Reais" (keyup)="calculaJurosCompostos()">
+        <input type="number" class="form-control" id="aporte-mensal" [(ngModel)]="aporteMensal" aria-label="quantidade em Reais" (keyup)="calculaJurosCompostos()" (click)="calculaJurosCompostos()">
         <div class="input-group-append">
           <span class="input-group-text">,00</span>
         </div>
@@ -28,21 +28,21 @@
     <div>
       <div class="item">
           <label for="juros-mensal">Taxa Mensal</label>
-          <input type="number" class="form-control" id="juros-mensal" [(ngModel)]="jurosMensal" (keyup)="calculaJurosAnual()">
+          <input type="number" class="form-control" id="juros-mensal" [(ngModel)]="jurosMensal" (keyup)="calculaJurosAnual()" (click)="calculaJurosAnual()">
       </div>
       <div class="item">
           <label for="juros-mensal">Taxa Anual</label>
-          <input type="number" class="form-control" id="juros-anual" [(ngModel)]="jurosAnual" (keyup)="calculaJurosMensal()">
+          <input type="number" class="form-control" id="juros-anual" [(ngModel)]="jurosAnual" (keyup)="calculaJurosMensal()" (click)="calculaJurosMensal()">
       </div>
     </div>
     <div>
       <div class="item">
           <label for="prazo-meses">Prazo Meses</label>
-          <input type="number" class="form-control" id="prazo-meses" [(ngModel)]="quantidadeMeses" (keyup)="calculaAnos()">
+          <input type="number" class="form-control" id="prazo-meses" [(ngModel)]="quantidadeMeses" (keyup)="calculaAnos()" (click)="calculaAnos()">
       </div>
       <div class="item">
           <label for="prazo-anos">Prazo Anos</label>
-          <input type="number" class="form-control" id="prazo-anos" [(ngModel)]="quantidadeAnos" (keyup)="calculaMeses()">
+          <input type="number" class="form-control" id="prazo-anos" [(ngModel)]="quantidadeAnos" (keyup)="calculaMeses()" (click)="calculaMeses()" >
       </div>
     </div>
     <!--

@@ -11,6 +11,7 @@ import { MenuComponent } from './menu/menu.component';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GoogleAdsenseComponent } from './google-adsense/google-adsense.component';
 
 
 registerLocaleData(localePt, 'pt');
@@ -21,13 +22,14 @@ registerLocaleData(localePt, 'pt');
     AppComponent,
     JurosCompostosComponent,
     MenuComponent,
+    GoogleAdsenseComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HighchartsChartModule,
-    NgbModule,
+    NgbModule
   ],
   providers: [],
 
